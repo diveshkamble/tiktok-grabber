@@ -1,0 +1,16 @@
+{
+  "name": "tiktok-grabber",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Divesh Kamble",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "tiktok-api": "^0.4.1",
+    "tiktok-scraper": "^1.1.10"
+  }
+}
