@@ -2,14 +2,20 @@
   "name": "tiktok-grabber",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Divesh Kamble",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.19.2",
+    "commander": "^5.1.0",
     "express": "^4.17.1",
-    "tiktok-scraper": "^1.1.10"
-  }
+    "inquirer": "^7.1.0",
+    "tiktok-scraper": "^1.1.10",
+    "yargs": "^15.3.1"
+  },
+  "preferGlobal": true,
+  "bin": "./main.js"
 }

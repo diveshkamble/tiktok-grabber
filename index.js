@@ -2,11 +2,16 @@ const TikTokScraper = require('tiktok-scraper');
 const fs = require('fs');
 const Path = require('path');
 const axios  = require('axios');
-(async () => {
+module.exports = {
+ GetImages :async(username,count) => {
     try {
-        const posts = await TikTokScraper.user('username', { number: 100 });
+        const posts = await TikTokScraper.user(username, { number: count });
         //console.log(posts);
-        console.log(posts.collector.length);
+        //console.log('bye');
+       //console.log(username);
+       console.log(count);
+        //console.log(posts.collector.length);
+        
         for(i=0;i<posts.collector.length;i++)
         {
            const  videoId = posts.collector[i].id;
@@ -22,12 +27,14 @@ const axios  = require('axios');
               })
 
               response.data.pipe(writer)
-
+              console.log('helloooo');
 
 
         }
+        console.log('out of for loop');
 
     } catch (error) {
         console.log(error);
     }
-})();
+},
+}
