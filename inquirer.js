@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
 module.exports={
-    getInput:()=>{
+    getInput:async()=>{
         const questions =[ {
             name:'username',
             type:'input',
@@ -13,10 +13,11 @@ module.exports={
             }
         },
        { name:'count',
-       type:'input',
+       type:'number',
        message:"please enter posts count (default:100)",
+       default : 100,
        validate:function(value){
-           if(value<=0)
+           if(value>0)
            return true;
            else
            return 'please enter a valid posts count';

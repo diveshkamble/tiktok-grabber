@@ -10,12 +10,15 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.2",
-    "commander": "^5.1.0",
+    "chalk": "^4.0.0",
+    "clear": "^0.1.0",
+    "clui": "^0.3.6",
     "express": "^4.17.1",
+    "figlet": "^1.4.0",
     "inquirer": "^7.1.0",
     "tiktok-scraper": "^1.1.10",
     "yargs": "^15.3.1"
   },
   "preferGlobal": true,
-  "bin": "./main.js"
+  "bin": "./tiktok-grabber.js"
 }

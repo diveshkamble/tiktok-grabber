@@ -2,23 +2,33 @@ const TikTokScraper = require('tiktok-scraper');
 const fs = require('fs');
 const Path = require('path');
 const axios  = require('axios');
+const CLI = require('clui');
+const Spinner = CLI.Spinner;
+const load = new Spinner('Downloading');
+const chalk = require('chalk');
+const userdir = './videos';
 module.exports = {
  GetImages :async(username,count) => {
     try {
+        load.start();
         const posts = await TikTokScraper.user(username, { number: count });
-        //console.log(posts);
-        //console.log('bye');
-       //console.log(username);
-       console.log(count);
-        //console.log(posts.collector.length);
-        
+        if(posts.collector.length>0)
+        {
+            if(!fs.existsSync(userdir)){
+
+                console.log(chalk.red('videos directory does not exist, creating videos directory...'))
+                fs.mkdirSync(userdir,{recursive:true})
+            }
+           
+           
+
         for(i=0;i<posts.collector.length;i++)
         {
            const  videoId = posts.collector[i].id;
             const videoUrl = posts.collector[i].videoUrl;
-            console.log(videoUrl);
+            
             const videoName = videoId+".mp4";
-            const path = Path.resolve(__dirname, 'videos',videoName );
+            const path = Path.resolve(__dirname, userdir,videoName );
             const writer = fs.createWriteStream(path)
             const response = await axios({
                 url:videoUrl,
@@ -27,14 +37,20 @@ module.exports = {
               })
 
               response.data.pipe(writer)
-              console.log('helloooo');
-
+              console.log(chalk.yellow(' '+videoName));
+              console.log(chalk.green('Download Completed.'))
 
         }
-        console.log('out of for loop');
-
+        
+        load.stop();
+        console.log(chalk.green('Task Successfully Completed....'));
+        console.log(chalk.yellow('Videos path: ',Path.resolve(__dirname,userdir)));
+    }
+    else
+    console.log(chalk.red('No Posts found!'));
+        
     } catch (error) {
-        console.log(error);
+        console.log(chalk.red(error));
     }
 },
 }
