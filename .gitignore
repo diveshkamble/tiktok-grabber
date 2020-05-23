@@ -104,3 +104,4 @@ dist
 .tern-port
 .videos/
 .node_modules/
+*.mp4
